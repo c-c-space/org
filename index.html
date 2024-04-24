@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1">
     <meta charset='utf-8'>
-    <title>🌚 Moon 🌛 月読 🌜 Lunar 🌝</title>
+    <title>🌚 Moon 🌛 太陰暦 🌜 Lunar 🌝</title>
     <link rel="icon" href="https://creative-community.space/ver/icon/favicon.png">
     <link rel="icon" href="https://creative-community.space/ver/icon/android.png" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="https://creative-community.space/ver/icon/ios.png" sizes="180x180">
@@ -19,11 +19,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
 
-    <link rel='stylesheet' href='css/index.css?v=0' type='text/css'>
-    <link rel='stylesheet' href='css/style.css?v=0' type='text/css'>
+    <link rel="stylesheet" href="css/index.css?v=0">
+    <link rel="stylesheet" href="css/style.css?v=0">
 
-    <script src='js/phase.js'></script>
-    <script src='js/script.js'></script>
+    <script src="js/phase.js?v=0"></script>
+    <script src="js/lunar.js?v=0"></script>
+    <script src="index.js"></script>
 </head>
 
 <body>
@@ -44,17 +45,65 @@
                 <time>29.530588853</time>
             </h1>
             <h2 id="earth">
-                🌚 Moon 🌛 月読 🌜 Lunar 🌝
+                🌚 Moon 🌛 太陰暦 🌜 Lunar 🌝
             </h2>
         </article>
         <div id="moon">
-            <canvas id='moon0'></canvas>
-            <canvas id='moon1'></canvas>
-            <canvas id='moon2'></canvas>
+            <canvas id="moon0"></canvas>
+            <canvas id="moon1"></canvas>
+            <canvas id="moon2"></canvas>
         </div>
     </main>
     <footer>
-        <input type='date' id='date' onchange='createMoon(this.value)'>
+        <details>
+            <summary>
+                今日の感情と強さを投稿する
+            </summary>
+            <form action="#">
+                <nav id="emoji">
+                    <input type="radio" name="emoji" id="Smiling" value="Smiling" required>
+                    <label for="Smiling">🙂</label>
+                    <input type="radio" name="emoji" id="Hearts" value="Hearts" required>
+                    <label for="Hearts">🥰</label>
+                    <input type="radio" name="emoji" id="Slightly" value="Slightly" required>
+                    <label for="Slightly">😜</label>
+                    <input type="radio" name="emoji" id="Thinking" value="Thinking" required>
+                    <label for="Thinking">🤔</label>
+                    <input type="radio" name="emoji" id="Neutral" value="Neutral" required>
+                    <label for="Neutral">😐</label>
+                    <input type="radio" name="emoji" id="Relieved" value="Relieved" required>
+                    <label for="Relieved">😌</label>
+                    <input type="radio" name="emoji" id="Dizzy" value="Dizzy" required>
+                    <label for="Dizzy">😵</label>
+                    <input type="radio" name="emoji" id="Disappointed" value="Disappointed" required>
+                    <label for="Disappointed">😥</label>
+                    <input type="radio" name="emoji" id="Triumph" value="Triumph" required>
+                    <label for="Triumph">😤</label>
+                </nav>
+                <nav id="to">
+                    <input type="radio" name="to" id="none" value="none" required>
+                    <label for="none">0%</label>
+                    <input type="radio" name="to" id="xx-small" value="xx-small" required>
+                    <label for="xx-small">1% - 15%</label>
+                    <input type="radio" name="to" id="x-small" value="x-small" required>
+                    <label for="x-small">16% - 30%</label>
+                    <input type="radio" name="to" id="small" value="small" required>
+                    <label for="small">31% - 45%</label>
+                    <input type="radio" name="to" id="medium" value="medium" required>
+                    <label for="medium">46% - 55%</label>
+                    <input type="radio" name="to" id="large" value="large" required>
+                    <label for="large">56% - 70%</label>
+                    <input type="radio" name="to" id="x-large" value="x-large" required>
+                    <label for="x-large">71% - 85%</label>
+                    <input type="radio" name="to" id="xx-large" value="xx-large" required>
+                    <label for="xx-large">86% - 99%</label>
+                    <input type="radio" name="to" id="xxx-large" value="xxx-large" required>
+                    <label for="xxx-large">100%</label>
+                </nav>
+                <button type="submit">投稿する Submit</button>
+            </form>
+        </details>
+        <input type="date" id="date" onchange="createMoon(this.value)" hidden>
     </footer>
 </body>
 

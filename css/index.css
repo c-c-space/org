@@ -2,7 +2,8 @@ body {
     background: #111;
 }
 
-#phase {
+#phase,
+footer {
     color: #fff;
 }
 
@@ -16,7 +17,7 @@ main {
     place-content: center;
     overflow: hidden;
     height: 123vw;
-    max-height: calc(100vh - 2.5rem);
+    max-height: calc(100vh - 4.5rem);
 }
 
 main,
@@ -48,6 +49,7 @@ input[type="date"] {
     font-size: 55%;
 }
 
+#phase u,
 input[type="date"] {
     font-family: inherit;
     font-weight: 400;
@@ -64,8 +66,7 @@ input[type="date"] {
 }
 
 #phase h1,
-#phase h2,
-footer {
+#phase h2 {
     padding: 1rem;
     margin: 0;
 }
