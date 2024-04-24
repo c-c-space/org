@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1">
+    <meta charset='utf-8'>
+    <title>🌚 Moon 🌛 月読 🌜 Lunar 🌝</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+
+    <link rel='stylesheet' href='css/index.css' type='text/css'>
+    <link rel='stylesheet' href='css/style.css' type='text/css'>
+
+    <script src='js/phase.js'></script>
+    <script src='js/script.js'></script>
+</head>
+
+<body>
+    <main>
+        <article id="phase">
+            <h1>
+                <u>平均朔望月（日）</u><br />
+                <time>29.530588853</time>
+            </h1>
+            <h2 id="earth">
+                ㊊ 月の出入りと満ち欠け
+            </h2>
+        </article>
+        <div id="moon">
+            <canvas id='moon0'></canvas>
+            <canvas id='moon1'></canvas>
+            <canvas id='moon2'></canvas>
+        </div>
+    </main>
+    <input type='date' id='date' onchange='createMoon(this.value)'>
+</body>
+
+</html>
