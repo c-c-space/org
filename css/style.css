@@ -18,3 +18,12 @@ footer {
 #phase time {
     font-family: "Saint", serif;
 }
+
+#menu {
+    mix-blend-mode: exclusion;
+    filter: invert(1);
+}
+
+.open footer {
+    display: none;
+}
