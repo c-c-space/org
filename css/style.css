@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Saint";
+    src: url("Saint.ttf") format("truetype");
+}
+
+#phase u,
+#phase h2,
+#phase h1 time.days::after {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-style: normal;
+}
+
+#phase u {
+    font-weight: 400;
+}
+
+#phase time {
+    font-family: "Saint", serif;
+}
