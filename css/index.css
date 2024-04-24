@@ -15,7 +15,7 @@ main {
     display: grid;
     place-content: center;
     overflow: hidden;
-    height: max-content;
+    height: 123vw;
     max-height: calc(100vh - 2.5rem);
 }
 
@@ -39,12 +39,18 @@ canvas[id*='moon'] {
     font-size: 125%;
 }
 
-#phase h2 {
+#phase h2,
+input[type="date"] {
     font-size: 111%;
 }
 
 #phase h1 time.days::after {
     font-size: 55%;
+}
+
+input[type="date"] {
+    font-family: inherit;
+    font-weight: 400;
 }
 
 #phase {
@@ -58,7 +64,8 @@ canvas[id*='moon'] {
 }
 
 #phase h1,
-#phase h2 {
+#phase h2,
+footer {
     padding: 1rem;
     margin: 0;
 }

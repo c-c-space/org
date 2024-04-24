@@ -5,6 +5,15 @@
     <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1">
     <meta charset='utf-8'>
     <title>🌚 Moon 🌛 月読 🌜 Lunar 🌝</title>
+    <link rel="icon" href="https://creative-community.space/ver/icon/favicon.png">
+    <link rel="icon" href="https://creative-community.space/ver/icon/android.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="https://creative-community.space/ver/icon/ios.png" sizes="180x180">
+
+    <link rel="stylesheet" href="https://creative-community.space/ver/css/menu.css?v=1" />
+    <script src="https://creative-community.space/ver/js/menu.js"></script>
+    <script type="text/javascript">
+        menuJSON('index.json')
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +27,16 @@
 </head>
 
 <body>
+    <header id="menu" hidden>
+        <button type="button"><b></b></button>
+        <menu id="contents">
+            <a href="/" target="_parent">
+                <p>creative-community.space</p>
+                <u>Index</u>
+            </a>
+        </menu>
+    </header>
+
     <main>
         <article id="phase">
             <h1>
@@ -25,7 +44,7 @@
                 <time>29.530588853</time>
             </h1>
             <h2 id="earth">
-                ㊊ 月の出入りと満ち欠け
+                🌚 Moon 🌛 月読 🌜 Lunar 🌝
             </h2>
         </article>
         <div id="moon">
@@ -34,7 +53,9 @@
             <canvas id='moon2'></canvas>
         </div>
     </main>
-    <input type='date' id='date' onchange='createMoon(this.value)'>
+    <footer>
+        <input type='date' id='date' onchange='createMoon(this.value)'>
+    </footer>
 </body>
 
 </html>

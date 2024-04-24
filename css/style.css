@@ -5,7 +5,8 @@
 
 #phase u,
 #phase h2,
-#phase h1 time.days::after {
+#phase h1 time.days::after,
+footer {
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-style: normal;
 }
