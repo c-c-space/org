@@ -1,8 +1,8 @@
 'use strict'
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem('yourInfo')) {
-        
+    if (localStorage.getItem('yourInfo')) {
+
     } else {
         readmeMD('README.md', 'footer')
     }
