@@ -36,9 +36,16 @@ window.addEventListener('DOMContentLoaded', function () {
     if (location.search) {
         const queryString = location.search;
         const params = new URLSearchParams(queryString)
-        let dd = params.get("no")
-        daysOld(Number(dd))
-        document.querySelector('footer details').remove()
+        let dd = Number(params.get("no"))
+
+        const synodic = 29.530588853 +
+            2.162e-9 * ((dd - 946727935816) / 315576e5)
+        earthShine(dd, synodic)
+        daysOld(dd)
+
+        if (localStorage.getItem('yourInfo')) {
+            document.querySelector('footer details').remove()
+        }
     } else {
         getLunarAge(inputDate.value)
     }
@@ -77,7 +84,6 @@ function getLunarAge(d) {
     date.setHours(0)
 
     const month = date.getTime() / 864e5 - 6.475,
-        // 平均朔望月 synodic month
         synodic = 29.530588853 +
             2.162e-9 * ((date.getTime() - 946727935816) / 315576e5)
 

@@ -37,7 +37,6 @@ if (isNaN(date.getTime())) return;
 date.setHours(0);
 
 const month = date.getTime() / 864e5 - 6.475,
-    // 平均朔望月 synodic month
     synodic = 29.530588853 +
         2.162e-9 * ((date.getTime() - 946727935816) / 315576e5)
 

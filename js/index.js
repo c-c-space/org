@@ -11,9 +11,6 @@ async function readmeMD(url, query) {
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem('yourInfo')) {
         document.querySelector('footer details').remove()
-        document.querySelector('#readme').remove()
-        readmeMD('README.md', '#calendar')
-        document.querySelector('#calendar').style.fontSize = "125%";
         const section = document.createElement('section')
         section.style.padding = "0 1rem";
         document.querySelector('footer aside').appendChild(section)
@@ -31,9 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
         enter.addEventListener('click', () => {
             setLOG()
         })
-    } else {
-        readmeMD('README.md', '#readme')
     }
+    readmeMD('README.md', '#readme')
 })
 
 
@@ -54,25 +50,21 @@ window.addEventListener("load", () => {
     let month = document.querySelector('#phase h1 time').textContent;
     let lunarPhase = Number(month).toFixed(0)
 
-    if (!location.search) {
-        submitStars(`29d12h44m3s/${lunarPhase}.csv`)
+    for (let m = 0; m < 30; m++) {
+        const button = document.createElement('button')
+        button.setAttribute('type', 'button')
+        button.textContent = m;
+        calendar.appendChild(button)
+        if (m == lunarPhase) {
+            button.style.color = "yellow";
+            button.className = "today";
+        }
+        button.addEventListener('click', () => {
+            location.assign(`?no=${m}`)
+        }, false)
     }
 
     if (localStorage.getItem('yourInfo')) {
-        for (let m = 0; m < 30; m++) {
-            const button = document.createElement('button')
-            button.setAttribute('type', 'button')
-            button.textContent = m;
-            calendar.appendChild(button)
-            if (m == lunarPhase) {
-                button.style.color = "yellow";
-                button.className = "today";
-            }
-            button.addEventListener('click', () => {
-                location.assign(`?no=${m}`)
-            }, false)
-        }
-
         if (location.search) {
             if (localStorage.getItem('emoji')) {
                 const main = document.querySelector('main')
@@ -102,6 +94,8 @@ window.addEventListener("load", () => {
                 }
             }
         } else {
+            submitStars(`29d12h44m3s/${lunarPhase}.csv`)
+
             const submitForm = document.querySelector('#submit')
             submitForm.addEventListener('submit', (e) => {
                 e.preventDefault()
@@ -157,5 +151,7 @@ window.addEventListener("load", () => {
                 }, 1000)
             })
         }
+    } else {
+        submitStars(`29d12h44m3s/${lunarPhase}.csv`)
     }
 })

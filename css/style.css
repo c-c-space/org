@@ -6,7 +6,7 @@ footer nav {
 
 #calendar {
     padding: 0.5rem 1rem;
-    margin: 0.5rem 0 0;
+    margin: 1rem 0 0;
     gap: 1rem;
     overflow: auto;
     place-items: flex-end;
@@ -29,7 +29,6 @@ footer nav {
         text-align: center;
     }
 }
-
 
 main code,
 footer nav::before,
@@ -85,7 +84,7 @@ footer {
 }
 
 #phase time,
-footer aside::after,
+footer aside::before,
 footer aside button,
 footer nav::after,
 footer details summary::after {
@@ -95,7 +94,7 @@ footer details summary::after {
 footer details summary::after,
 footer nav::before,
 footer nav::after,
-footer aside::after {
+footer aside::before {
     background: #fff;
     color: #111;
 }
@@ -115,9 +114,12 @@ footer aside button.today {
 }
 
 #to input[type="radio"]+label,
-footer aside #calendar,
-footer section {
+footer aside #calendar {
     font-size: 125%;
+}
+
+footer section {
+    font-size: 111%;
 }
 
 summary {
@@ -155,17 +157,23 @@ footer aside button:hover,
     background: #eee;
 }
 
-footer details summary::after,
-footer section {
+footer details summary::after {
     padding: 0.5rem 1rem;
-    margin: 0;
 }
 
-footer aside::after {
+footer section {
+    padding: 1rem;
+}
+
+footer aside::before {
     content: 'Your Emotions by Lunar Phase';
     position: absolute;
     top: -1rem;
-    right: 0.5rem;
+    left: 0;
+    right: 0;
+    padding: 0.25rem 0 0;
+    text-align: center;
+    width: 100%;
     z-index: 0;
 }
 

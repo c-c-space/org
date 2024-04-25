@@ -16,8 +16,8 @@ main {
     display: grid;
     place-content: center;
     overflow: hidden;
-    height: 173.3vw;
-    max-height: calc(100vh - 4.5rem);
+    height: 170vw;
+    max-height: calc(100vh - 5rem);
 }
 
 main,

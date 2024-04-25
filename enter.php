@@ -9,4 +9,6 @@
     echo "<small id='os'>" . $os . "</small>";
     ?>
 </p>
-<small style="float: right;">Click "Enter Here" to submit your emotions here.</small>
+<p>
+    <small>Click "Enter Here" to submit your emotions here.</small>
+</p>
