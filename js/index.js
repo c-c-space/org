@@ -1,11 +1,5 @@
 'use strict'
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min) + min)
-}
-
 async function readmeMD(url, query) {
     fetch(url)
         .then(response => response.text())
@@ -15,7 +9,7 @@ async function readmeMD(url, query) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem('yourInfo')) {
+    if (localStorage.getItem('yourInfo')) {
         readmeMD('README.md', 'footer')
         document.querySelector('footer').style.padding = "1rem";
     }
@@ -35,20 +29,25 @@ const addData = (emojiValue, fontSize, lunarPhase, timestamp) => {
 }
 
 window.addEventListener("load", () => {
-    let month = document.querySelector('#phase h1 time').textContent;
     let calendar = document.querySelector('#calendar')
+    let month = document.querySelector('#phase h1 time').textContent;
     let lunarPhase = Number(month).toFixed(0)
 
-    if (!localStorage.getItem('yourInfo')) {
+    if (localStorage.getItem('yourInfo')) {
         submitStars(`29d12h44m3s/${lunarPhase}.csv`)
     } else {
         for (let m = 0; m < 30; m++) {
-            const li = document.createElement('li')
-            calendar.appendChild(li)
+            const button = document.createElement('button')
+            button.setAttribute('type', 'button')
+            button.textContent = m;
+            calendar.appendChild(button)
             if (m == lunarPhase) {
-                li.style.color = "yellow";
-                li.className = "today";
+                button.style.color = "yellow";
+                button.className = "today";
             }
+            button.addEventListener('click', () => {
+                location.assign(`?no=${m}`)
+            }, false)
         }
 
         if (localStorage.getItem('emoji')) {
@@ -79,59 +78,61 @@ window.addEventListener("load", () => {
             }
         }
 
-        const submitForm = document.querySelector('#submit')
-        submitForm.addEventListener('submit', (e) => {
-            e.preventDefault()
+        if (!location.search) {
+            const submitForm = document.querySelector('#submit')
+            submitForm.addEventListener('submit', (e) => {
+                e.preventDefault()
 
-            const emojiAll = document.getElementsByName('emoji')
-            const toAll = document.getElementsByName("to")
+                const emojiAll = document.getElementsByName('emoji')
+                const toAll = document.getElementsByName("to")
 
-            let emojiValue;
-            for (let i = 0; i < emojiAll.length; i++) {
-                if (emojiAll[i].checked) {
-                    emojiValue = emojiAll[i].value;
-                    break
+                let emojiValue;
+                for (let i = 0; i < emojiAll.length; i++) {
+                    if (emojiAll[i].checked) {
+                        emojiValue = emojiAll[i].value;
+                        break
+                    }
                 }
-            }
 
-            let fontSize
-            for (let i = 0; i < toAll.length; i++) {
-                if (toAll[i].checked) {
-                    fontSize = toAll[i].value;
-                    break
+                let fontSize
+                for (let i = 0; i < toAll.length; i++) {
+                    if (toAll[i].checked) {
+                        fontSize = toAll[i].value;
+                        break
+                    }
                 }
-            }
 
-            let thisEmoji = {
-                emoji: emojiValue,
-                size: fontSize,
-                lunar: lunarPhase
-            }
+                let thisEmoji = {
+                    emoji: emojiValue,
+                    size: fontSize,
+                    lunar: lunarPhase
+                }
 
-            // localStorage に sign を追加
-            addData(emojiValue, fontSize, lunarPhase, new Date().toLocaleString())
+                // localStorage に sign を追加
+                addData(emojiValue, fontSize, lunarPhase, new Date().toLocaleString())
 
-            const emojiJSON = JSON.stringify(thisEmoji)
-            let url = 'submit.php';
-            let response = fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: emojiJSON
-            })
-
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
+                const emojiJSON = JSON.stringify(thisEmoji)
+                let url = 'submit.php';
+                let response = fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: emojiJSON
                 })
-                .catch(error => {
-                    console.log(error)
-                }, false)
 
-            setTimeout(() => {
-                window.location.replace('')
-            }, 1000)
-        })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    }, false)
+
+                setTimeout(() => {
+                    window.location.replace('')
+                }, 1000)
+            })
+        }
     }
 })

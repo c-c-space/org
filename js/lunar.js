@@ -31,7 +31,19 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const inputDate = document.querySelector('#date')
     inputDate.value = new Date().toLocaleDateString('sv')
-    createMoon(inputDate.value)
+
+    // ?no=DD
+    if (location.search) {
+        const queryString = location.search;
+        const params = new URLSearchParams(queryString)
+        let dd = params.get("no")
+        daysOld(Number(dd))
+        document.querySelector('footer details').remove()
+        document.querySelector('footer').appendChild(document.createElement('section'))
+        readmeMD('README.md', 'footer section')
+    } else {
+        createMoon(inputDate.value)
+    }
 }, false)
 
 function earthShine(sun, m) {
@@ -49,6 +61,18 @@ function earthShine(sun, m) {
     ctx[2].fill();
 }
 
+function daysOld(today) {
+    let days = today.toFixed(0)
+    const moonAge = document.querySelector('#phase h1 time')
+    moonAge.className = 'days';
+    moonAge.innerHTML = days;
+    moonAge.addEventListener('click', function () {
+        moonAge.className = moonAge.className === "days" ? "today" : "days";
+        moonAge.innerHTML = moonAge.textContent === days ? today.toFixed(12) : days;
+    }, false)
+    lunarPhase(today, '#phase h1 u')
+}
+
 function createMoon(d) {
     const date = new Date(d)
     if (isNaN(date.getTime())) return;
@@ -60,16 +84,7 @@ function createMoon(d) {
             2.162e-9 * ((date.getTime() - 946727935816) / 315576e5)
 
     let today = month > 0 ? month % synodic : (synodic + month % synodic) % synodic;
-    let days = today.toFixed(1)
 
-    const moonAge = document.querySelector('#phase h1 time')
-    moonAge.className = 'days';
-    moonAge.innerHTML = days;
-    moonAge.addEventListener('click', function () {
-        moonAge.className = moonAge.className === "days" ? "today" : "days";
-        moonAge.innerHTML = moonAge.textContent === days ? today : days;
-    }, false)
-
+    daysOld(today)
     earthShine(today, synodic)
-    lunarPhase(days, '#phase h1 u')
 }
