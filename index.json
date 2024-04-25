@@ -1,9 +1,16 @@
 {
     "contents": [
         {
-            "date": "感情の強さと方向",
-            "name": "🌚 Moon 🌛 太陰暦 🌜 Lunar 🌝",
+            "date": "今日の感情と強さ",
+            "name": "🌚 Moon 🌛 月(暦) 🌜 Lunar 🌝",
             "url": "/org/",
+            "ver": "ver.1",
+            "hidden": true
+        },
+        {
+            "date": "月齢・月相",
+            "name": "Lunar Calendar",
+            "url": "/org/29530588853/",
             "ver": "ver.1",
             "hidden": true
         }

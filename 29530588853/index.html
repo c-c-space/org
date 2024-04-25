@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1">
+    <meta charset='utf-8'>
+    <link rel="icon" href="https://creative-community.space/ver/icon/favicon.png">
+    <link rel="icon" href="https://creative-community.space/ver/icon/android.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="https://creative-community.space/ver/icon/ios.png" sizes="180x180">
+
+    <title>🌚 月齢 🌛 Lunar Calendar 🌜 月相 🌝</title>
+    <meta name="description" content="29.530588853（日） + 0.000000002162 × Y" />
+
+    <link rel="stylesheet" href="https://creative-community.space/ver/css/menu.css?v=1" />
+    <script src="https://creative-community.space/ver/js/menu.js"></script>
+    <script type="text/javascript">
+        menuJSON('../index.json')
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/phase.js"></script>
+    <script src="../js/lunar.js"></script>
+
+    <style>
+        footer {
+            padding: 1rem;
+            margin: 0;
+        }
+
+        #readme {
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="menu" hidden>
+        <button type="button"><b></b></button>
+        <menu id="contents">
+            <a href="/" target="_parent">
+                <p>creative-community.space</p>
+                <u>Index</u>
+            </a>
+        </menu>
+    </header>
+
+    <main>
+        <article id="phase">
+            <h1>
+                <u>29.530588853（日）</u><br />
+                <time>+ 0.000000002162 × Y</time>
+            </h1>
+            <h2 id="earth">
+                🌚 月齢 🌛 Lunar Calendar 🌜 月相 🌝
+            </h2>
+        </article>
+        <div id="moon">
+            <canvas id="moon0"></canvas>
+            <canvas id="moon1"></canvas>
+            <canvas id="moon2"></canvas>
+        </div>
+    </main>
+    <footer>
+        <input type="date" id="date" onchange="createMoon(this.value)">
+        <section id="readme"></section>
+        <script>
+            fetch('README.md')
+                .then(response => response.text())
+                .then(innerText => {
+                    document.querySelector('#readme').innerText = innerText;
+                }, false)
+        </script>
+    </footer>
+</body>
+
+</html>

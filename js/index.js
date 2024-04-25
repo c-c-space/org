@@ -16,9 +16,8 @@ async function readmeMD(url, query) {
 
 document.addEventListener("DOMContentLoaded", () => {
     let month = document.querySelector('#phase h1 time').textContent;
-    let thisPhase = Number(month).toFixed(0)
 
-    if (localStorage.getItem('yourInfo')) {
+    if (!localStorage.getItem('yourInfo')) {
         if (localStorage.getItem('emoji')) {
             let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
             for (let i = 0; i < emojiJSON.length; i++) {
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let lunar = emojiJSON[i].lunar;
 
                 const main = document.querySelector('main')
-                if (lunar === thisPhase) {
+                if (lunar == Number(month).toFixed(0)) {
                     const star = document.createElement('code')
                     star.textContent = emoji;
                     star.style.fontSize = size;
@@ -48,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     } else {
         readmeMD('README.md', 'footer')
+        document.querySelector('footer').style.padding = "1rem";
     }
 })
 
@@ -55,70 +55,72 @@ document.addEventListener("DOMContentLoaded", () => {
 let array = JSON.parse(localStorage.getItem("emoji")) || [];
 const addData = (emojiValue, toValue, thisPhase) => {
     array.push({
-        emojiValue,
-        toValue,
-        thisPhase
+        emoji,
+        size,
+        lunar
     })
     localStorage.setItem("emoji", JSON.stringify(array))
     return { emojiValue, toValue, thisPhase }
 }
 
 window.addEventListener("load", () => {
-    const submitForm = document.querySelector('#submit')
-    submitForm.addEventListener('submit', (e) => {
-        e.preventDefault()
+    if (localStorage.getItem('yourInfo')) {
+        const submitForm = document.querySelector('#submit')
+        submitForm.addEventListener('submit', (e) => {
+            e.preventDefault()
 
-        const emojiAll = document.getElementsByName('emoji')
-        const toAll = document.getElementsByName("to")
+            const emojiAll = document.getElementsByName('emoji')
+            const toAll = document.getElementsByName("to")
 
-        let emojiValue;
-        for (let i = 0; i < emojiAll.length; i++) {
-            if (emojiAll[i].checked) {
-                emojiValue = emojiAll[i].value;
-                break
+            let emojiValue;
+            for (let i = 0; i < emojiAll.length; i++) {
+                if (emojiAll[i].checked) {
+                    emojiValue = emojiAll[i].value;
+                    break
+                }
             }
-        }
 
-        let toValue
-        for (let i = 0; i < toAll.length; i++) {
-            if (toAll[i].checked) {
-                toValue = toAll[i].value;
-                break
+            let toValue
+            for (let i = 0; i < toAll.length; i++) {
+                if (toAll[i].checked) {
+                    toValue = toAll[i].value;
+                    break
+                }
             }
-        }
 
-        let month = document.querySelector('#phase h1 time').textContent;
-        let thisPhase = Number(month).toFixed(0)
+            let month = document.querySelector('#phase h1 time').textContent;
+            let thisPhase = Number(month).toFixed(0)
 
-        let thisEmoji = {
-            emoji: emojiValue,
-            size: toValue,
-            lunar: thisPhase
-        }
+            let thisEmoji = {
+                emoji: emojiValue,
+                size: toValue,
+                lunar: thisPhase
+            }
 
-        // localStorage に sign を追加
-        addData(emojiValue, toValue, thisPhase)
+            // localStorage に sign を追加
+            addData(emojiValue, toValue, thisPhase)
 
-        const emojiJSON = JSON.stringify(thisEmoji)
-        let url = 'submit.php';
-        let response = fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: emojiJSON
-        })
-
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
+            const emojiJSON = JSON.stringify(thisEmoji)
+            let url = 'submit.php';
+            let response = fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: emojiJSON
             })
-            .catch(error => {
-                console.log(error)
-            }, false)
 
-        setTimeout(() => {
-            window.location.replace('')
-        }, 1000)
-    })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                }, false)
+
+            setTimeout(() => {
+                window.location.replace('')
+            }, 1000)
+        })
+    }
 })
