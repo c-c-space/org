@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let month = document.querySelector('#phase h1 time').textContent;
     let thisPhase = Number(month).toFixed(0)
 
-    if (!localStorage.getItem('yourInfo')) {
+    if (localStorage.getItem('yourInfo')) {
         if (localStorage.getItem('emoji')) {
             let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
             for (let i = 0; i < emojiJSON.length; i++) {
