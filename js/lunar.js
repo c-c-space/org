@@ -74,7 +74,7 @@ function daysOld(today) {
 function createMoon(d) {
     const date = new Date(d)
     if (isNaN(date.getTime())) return;
-    date.setHours(12)
+    date.setHours(0)
 
     const month = date.getTime() / 864e5 - 6.475,
         // 平均朔望月 synodic month

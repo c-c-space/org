@@ -30,15 +30,18 @@ ___
 （その平均値「平均朔望月」は、地球の膨張に比例して年々少しずつ長くなっている）
 
 ```
+// getLunarAge()
+
 const date = new Date();
 if (isNaN(date.getTime())) return;
-date.setHours(12);
+date.setHours(0);
 
 const month = date.getTime() / 864e5 - 6.475,
     // 平均朔望月 synodic month
     synodic = 29.530588853 +
-        2.162e-9 * ((date.getTime() - 946727935816) / 315576e5),
-    today = month > 0 ? month % synodic : (synodic + month % synodic) % synodic;
+        2.162e-9 * ((date.getTime() - 946727935816) / 315576e5)
+
+let today = month > 0 ? month % synodic : (synodic + month % synodic) % synodic;
 ```
 
 ### 月の出入りと満ち欠け
