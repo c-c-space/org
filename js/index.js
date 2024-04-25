@@ -35,7 +35,9 @@ window.addEventListener("load", () => {
     let month = document.querySelector('#phase h1 time').textContent;
     let lunarPhase = Number(month).toFixed(0)
 
-    submitStars(`29d12h44m3s/${lunarPhase}.csv`)
+    if (!location.search) {
+        submitStars(`29d12h44m3s/${lunarPhase}.csv`)
+    }
 
     if (localStorage.getItem('yourInfo')) {
         for (let m = 0; m < 30; m++) {
