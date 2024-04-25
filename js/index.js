@@ -15,21 +15,39 @@ async function readmeMD(url, query) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    let month = document.querySelector('#phase h1 time').textContent;
+    if (!localStorage.getItem('yourInfo')) {
+        readmeMD('README.md', 'footer')
+        document.querySelector('footer').style.padding = "1rem";
+    }
+})
 
+
+let array = JSON.parse(localStorage.getItem("emoji")) || [];
+const addData = (emojiValue, fontSize, lunarPhase) => {
+    array.push({
+        emojiValue,
+        fontSize,
+        lunarPhase
+    })
+    localStorage.setItem("emoji", JSON.stringify(array))
+    return { emojiValue, fontSize, lunarPhase }
+}
+
+window.addEventListener("load", () => {
     if (localStorage.getItem('yourInfo')) {
+        let month = document.querySelector('#phase h1 time').textContent;
+        let lunarPhase = Number(month).toFixed(0)
+
         if (localStorage.getItem('emoji')) {
             let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
             console.log(emojiJSON)
-            
+
             for (let i = 0; i < emojiJSON.length; i++) {
                 let emoji = emojiJSON[i].emojiValue;
                 let size = emojiJSON[i].fontSize;
                 let lunar = emojiJSON[i].lunarPhase;
 
                 const main = document.querySelector('main')
-                let month = document.querySelector('#phase h1 time').textContent;
-                let lunarPhase = Number(month).toFixed(0)
                 console.log(lunarPhase)
 
                 if (Number(lunar) == lunarPhase) {
@@ -52,26 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
-    } else {
-        readmeMD('README.md', 'footer')
-        document.querySelector('footer').style.padding = "1rem";
-    }
-})
 
-// 色と記号を投稿する
-let array = JSON.parse(localStorage.getItem("emoji")) || [];
-const addData = (emojiValue, fontSize, lunarPhase) => {
-    array.push({
-        emojiValue,
-        fontSize,
-        lunarPhase
-    })
-    localStorage.setItem("emoji", JSON.stringify(array))
-    return { emojiValue, fontSize, lunarPhase }
-}
-
-window.addEventListener("load", () => {
-    if (localStorage.getItem('yourInfo')) {
         const submitForm = document.querySelector('#submit')
         submitForm.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -94,9 +93,6 @@ window.addEventListener("load", () => {
                     break
                 }
             }
-
-            let month = document.querySelector('#phase h1 time').textContent;
-            let lunarPhase = Number(month).toFixed(0)
 
             let thisEmoji = {
                 emoji: emojiValue,
