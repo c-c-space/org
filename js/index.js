@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem('emoji')) {
             let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
             for (let i = 0; i < emojiJSON.length; i++) {
-                let emoji = emojiJSON[i].emoji;
-                let size = emojiJSON[i].size;
-                let lunar = emojiJSON[i].lunar;
+                let emoji = emojiJSON[i].emojiValue;
+                let size = emojiJSON[i].fontSize;
+                let lunar = emojiJSON[i].lunarPhase;
 
                 const main = document.querySelector('main')
                 if (lunar == Number(month).toFixed(0)) {
@@ -53,14 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 色と記号を投稿する
 let array = JSON.parse(localStorage.getItem("emoji")) || [];
-const addData = (emojiValue, toValue, thisPhase) => {
+const addData = (emojiValue, fontSize, lunarPhase) => {
     array.push({
-        emoji,
-        size,
-        lunar
+        emojiValue,
+        fontSize,
+        lunarPhase
     })
     localStorage.setItem("emoji", JSON.stringify(array))
-    return { emojiValue, toValue, thisPhase }
+    return { emojiValue, fontSize, lunarPhase }
 }
 
 window.addEventListener("load", () => {
@@ -80,25 +80,25 @@ window.addEventListener("load", () => {
                 }
             }
 
-            let toValue
+            let fontSize
             for (let i = 0; i < toAll.length; i++) {
                 if (toAll[i].checked) {
-                    toValue = toAll[i].value;
+                    fontSize = toAll[i].value;
                     break
                 }
             }
 
             let month = document.querySelector('#phase h1 time').textContent;
-            let thisPhase = Number(month).toFixed(0)
+            let lunarPhase = Number(month).toFixed(0)
 
             let thisEmoji = {
                 emoji: emojiValue,
-                size: toValue,
-                lunar: thisPhase
+                size: fontSize,
+                lunar: lunarPhase
             }
 
             // localStorage に sign を追加
-            addData(emojiValue, toValue, thisPhase)
+            addData(emojiValue, fontSize, lunarPhase)
 
             const emojiJSON = JSON.stringify(thisEmoji)
             let url = 'submit.php';
