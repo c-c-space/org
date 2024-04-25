@@ -1,15 +1,15 @@
 {
     "contents": [
         {
-            "date": "今日の感情と強さ",
-            "name": "🌚 Moon 🌛 月(暦) 🌜 Lunar 🌝",
+            "date": "月の満ち欠けと感情（その強さ）",
+            "name": "🙂 🥰 😜 🤔 😐 😌 😵 😥 😤",
             "url": "/org/",
             "ver": "ver.1",
             "hidden": true
         },
         {
-            "date": "月齢・月相",
-            "name": "Lunar Calendar",
+            "date": "🌚 月齢・月相 🌝",
+            "name": "🌛 Lunar Calendar 🌜",
             "url": "/org/29d12h44m3s/",
             "ver": "ver.1",
             "hidden": true
