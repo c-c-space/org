@@ -115,7 +115,8 @@ footer aside button.today {
 }
 
 #to input[type="radio"]+label,
-footer aside #calendar {
+footer aside #calendar,
+footer section {
     font-size: 125%;
 }
 

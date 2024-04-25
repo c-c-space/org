@@ -10,8 +10,27 @@ async function readmeMD(url, query) {
 
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem('yourInfo')) {
-        readmeMD('README.md', 'footer')
-        document.querySelector('footer').style.padding = "1rem";
+        document.querySelector('footer details').remove()
+        document.querySelector('#readme').remove()
+        readmeMD('README.md', '#calendar')
+        document.querySelector('#calendar').style.fontSize = "125%";
+        const section = document.createElement('section')
+        section.style.padding = "0 1rem";
+        document.querySelector('footer aside').appendChild(section)
+        fetch('enter.php')
+            .then(response => response.text())
+            .then(innerHTML => {
+                section.innerHTML = innerHTML;
+            });
+        const enter = document.createElement('button')
+        enter.setAttribute('type', 'button')
+        enter.textContent = 'Enter Here';
+        enter.style.width = "100%";
+        enter.style.fontSize = "200%";
+        document.querySelector('footer aside').appendChild(enter)
+        enter.addEventListener('click', () => {
+            setLOG()
+        })
     } else {
         readmeMD('README.md', '#readme')
     }

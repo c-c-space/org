@@ -1,6 +1,4 @@
-
-
-### [スマイリーと感情 Smileys & Emotion](https://symbl.cc/jp/emoji/smileys-and-emotion/)
+[スマイリーと感情 Smileys & Emotion](https://symbl.cc/jp/emoji/smileys-and-emotion/)
 
 | 絵文字 | 名前 | 称号 | 年 |
 | ---- | ---- | ---- | ---- |

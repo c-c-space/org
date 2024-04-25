@@ -1,1 +1,1 @@
-# Your Emotions by Lunar Phase
+# 感情を「絵文字」・その強さを「%」で表し、月齢ごとに記録する
