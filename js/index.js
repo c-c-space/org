@@ -17,7 +17,7 @@ async function readmeMD(url, query) {
 document.addEventListener("DOMContentLoaded", () => {
     let month = document.querySelector('#phase h1 time').textContent;
 
-    if (!localStorage.getItem('yourInfo')) {
+    if (localStorage.getItem('yourInfo')) {
         if (localStorage.getItem('emoji')) {
             let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
             for (let i = 0; i < emojiJSON.length; i++) {
