@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', function () {
         daysOld(Number(dd))
         document.querySelector('footer details').remove()
     } else {
-        createMoon(inputDate.value)
+        getLunarAge(inputDate.value)
     }
 }, false)
 
@@ -71,7 +71,7 @@ function daysOld(today) {
     lunarPhase(today, '#phase h1 u')
 }
 
-function createMoon(d) {
+function getLunarAge(d) {
     const date = new Date(d)
     if (isNaN(date.getTime())) return;
     date.setHours(0)

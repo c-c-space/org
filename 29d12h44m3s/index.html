@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="../css/index.css?v=1">
     <link rel="stylesheet" href="../css/style.css?v=1">
 
-    <script src="../js/phase.js?v=1"></script>
-    <script src="../js/lunar.js?v=1"></script>
+    <script src="../js/phase.js?v=2"></script>
+    <script src="../js/lunar.js?v=2"></script>
 
     <style>
         footer {
@@ -67,7 +67,7 @@
         </div>
     </main>
     <footer>
-        <input type="date" id="date" onchange="createMoon(this.value)">
+        <input type="date" id="date" onchange="getLunarAge(this.value)">
         <section id="readme"></section>
         <script>
             fetch('README.md')
