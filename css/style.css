@@ -18,7 +18,6 @@ footer nav::after {
 }
 
 main code {
-    z-index: 0;
     transform: translate(-50%, -50%);
 }
 
@@ -76,7 +75,7 @@ footer details summary::after {
     content: "Submit your today's emotions by Emoji and Percentage";
     display: block;
     font-size: 150%;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
 }
 
 #emoji input[type="radio"]+label {
@@ -114,7 +113,12 @@ summary {
 }
 
 footer form button {
+    cursor: pointer;
     color: #111;
+    background: #eee;
+    border: none;
+    outline: none;
+    font-family: inherit;
     margin-top: 0.5rem;
     width: 100%;
 }

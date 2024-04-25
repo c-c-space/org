@@ -34,9 +34,9 @@ window.addEventListener('DOMContentLoaded', function () {
     createMoon(inputDate.value)
 }, false)
 
-function earthShine(age, m) {
-    const s = Math.cos(pi2 * age / m),
-        s2 = Math.sin(pi2 * age / m),
+function earthShine(sun, m) {
+    const s = Math.cos(pi2 * sun / m),
+        s2 = Math.sin(pi2 * sun / m),
         r = Math.abs(halfSize * s);
 
     c[1].style.transform = `rotate(${s2 > 0 ? 180 : 0}deg)`;
@@ -50,16 +50,17 @@ function earthShine(age, m) {
 }
 
 function createMoon(d) {
-    const date = new Date(d);
+    const date = new Date(d)
     if (isNaN(date.getTime())) return;
+    date.setHours(12)
 
     const month = date.getTime() / 864e5 - 6.475,
         // 平均朔望月 synodic month
         synodic = 29.530588853 +
-            2.162e-9 * ((date.getTime() - 946727935816) / 315576e5);
+            2.162e-9 * ((date.getTime() - 946727935816) / 315576e5)
 
     let today = month > 0 ? month % synodic : (synodic + month % synodic) % synodic;
-    let days = today.toFixed(1);
+    let days = today.toFixed(1)
 
     const moonAge = document.querySelector('#phase h1 time')
     moonAge.className = 'days';
