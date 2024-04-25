@@ -39,8 +39,6 @@ window.addEventListener('DOMContentLoaded', function () {
         let dd = params.get("no")
         daysOld(Number(dd))
         document.querySelector('footer details').remove()
-        document.querySelector('footer').appendChild(document.createElement('section'))
-        readmeMD('README.md', 'footer section')
     } else {
         createMoon(inputDate.value)
     }

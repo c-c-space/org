@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem('yourInfo')) {
         readmeMD('README.md', 'footer')
         document.querySelector('footer').style.padding = "1rem";
+    } else {
+        readmeMD('README.md', '#readme')
     }
 })
 
