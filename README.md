@@ -1,1 +1,1 @@
-# 今日の感情と強さ
+# Your Emotions by Lunar Phase

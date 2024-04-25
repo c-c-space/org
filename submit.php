@@ -12,7 +12,7 @@ $output = array(
     '"' . $_SERVER["REMOTE_ADDR"] . '"'
 );
 
-define("LOGFILE", "29530588853/" . $data["lunar"] . ".csv");
+define("LOGFILE", "29d12h44m3s/" . $data["lunar"] . ".csv");
 $result = implode(',', $output);
 file_put_contents(LOGFILE, $result . "\n", FILE_APPEND | LOCK_EX);
 echo json_encode($output);

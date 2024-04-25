@@ -18,24 +18,48 @@ footer nav::after {
 }
 
 main code {
+    cursor: help;
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 footer nav::before {
     position: absolute;
     top: 0.5rem;
-    left: 1rem;
+    right: 1rem;
     line-height: 75%;
     padding: 0.25rem 0;
 }
 
 footer nav::after {
     top: 0.5rem;
-    right: 1rem;
+    left: 1rem;
 }
 
 footer nav input[type="radio"] {
     display: none;
+}
+
+footer aside {
+    position: relative;
+}
+
+footer aside::after {
+    content: 'Your Emotions by Lunar Phase';
+    position: absolute;
+    top: -0.25rem;
+    right: 0;
+}
+
+footer aside ol {
+    display: flex;
+    padding: 0.5rem;
+    margin: 0;
+    overflow: auto;
+    place-items: flex-end;
+    vertical-align: bottom;
+    width: 100%;
+    list-style-position: inside;
 }
 
 footer nav input[type="radio"]:checked+label {
@@ -59,6 +83,8 @@ footer {
 }
 
 #phase time,
+footer aside::after,
+footer aside ol li::marker,
 footer nav::after,
 footer details summary::after {
     font-family: "Saint", serif;
@@ -66,16 +92,10 @@ footer details summary::after {
 
 footer details summary::after,
 footer nav::before,
-footer nav::after {
+footer nav::after,
+footer aside::after {
     background: #fff;
     color: #111;
-}
-
-footer details summary::after {
-    content: "Submit your today's emotions by Emoji and Percentage";
-    display: block;
-    font-size: 150%;
-    padding: 0.5rem 1rem;
 }
 
 #emoji input[type="radio"]+label {
@@ -85,15 +105,32 @@ footer details summary::after {
 
 footer form button {
     font-size: 200%;
+    font-weight: 400;
 }
 
-#to input[type="radio"]+label {
+footer details summary::after,
+footer aside ol li.today::marker {
+    font-size: 150%;
+}
+
+#to input[type="radio"]+label,
+footer aside ol li {
     font-size: 125%;
     padding: 0.25rem 0.5rem;
 }
 
 summary {
     font-size: 100%;
+}
+
+footer details summary::after {
+    padding: 0.5rem 1rem;
+    margin: 0;
+}
+
+footer details summary::after {
+    content: "Submit your today's emotions by Emoji and Percentage";
+    display: block;
 }
 
 #emoji::before {

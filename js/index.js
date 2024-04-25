@@ -23,35 +23,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 let array = JSON.parse(localStorage.getItem("emoji")) || [];
-const addData = (emojiValue, fontSize, lunarPhase) => {
+const addData = (emojiValue, fontSize, lunarPhase, timestamp) => {
     array.push({
         emojiValue,
         fontSize,
-        lunarPhase
+        lunarPhase,
+        timestamp
     })
     localStorage.setItem("emoji", JSON.stringify(array))
-    return { emojiValue, fontSize, lunarPhase }
+    return { emojiValue, fontSize, lunarPhase, timestamp }
 }
 
 window.addEventListener("load", () => {
-    if (localStorage.getItem('yourInfo')) {
-        let month = document.querySelector('#phase h1 time').textContent;
-        let lunarPhase = Number(month).toFixed(0)
+    let month = document.querySelector('#phase h1 time').textContent;
+    let calendar = document.querySelector('#calendar')
+    let lunarPhase = Number(month).toFixed(0)
+
+    if (!localStorage.getItem('yourInfo')) {
+        submitStars(`29d12h44m3s/${lunarPhase}.csv`)
+    } else {
+        for (let m = 0; m < 30; m++) {
+            const li = document.createElement('li')
+            calendar.appendChild(li)
+            if (m == lunarPhase) {
+                li.style.color = "yellow";
+                li.className = "today";
+            }
+        }
 
         if (localStorage.getItem('emoji')) {
-            let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
-            console.log(emojiJSON)
-
+            const main = document.querySelector('main')
+            const emojiJSON = JSON.parse(localStorage.getItem('emoji'))
             for (let i = 0; i < emojiJSON.length; i++) {
                 let emoji = emojiJSON[i].emojiValue;
                 let size = emojiJSON[i].fontSize;
                 let lunar = emojiJSON[i].lunarPhase;
 
-                const main = document.querySelector('main')
-                console.log(lunarPhase)
-
                 if (Number(lunar) == lunarPhase) {
-                    console.log(Number(lunar))
                     const star = document.createElement('code')
                     star.textContent = emoji;
                     star.style.fontSize = size;
@@ -101,7 +109,7 @@ window.addEventListener("load", () => {
             }
 
             // localStorage に sign を追加
-            addData(emojiValue, fontSize, lunarPhase)
+            addData(emojiValue, fontSize, lunarPhase, new Date().toLocaleString())
 
             const emojiJSON = JSON.stringify(thisEmoji)
             let url = 'submit.php';
