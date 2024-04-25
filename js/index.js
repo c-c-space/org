@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem('yourInfo')) {
         if (localStorage.getItem('emoji')) {
             let emojiJSON = JSON.parse(localStorage.getItem('emoji'))
+            console.log(emojiJSON)
+            
             for (let i = 0; i < emojiJSON.length; i++) {
                 let emoji = emojiJSON[i].emojiValue;
                 let size = emojiJSON[i].fontSize;
@@ -28,7 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const main = document.querySelector('main')
                 let month = document.querySelector('#phase h1 time').textContent;
                 let lunarPhase = Number(month).toFixed(0)
+                console.log(lunarPhase)
+
                 if (Number(lunar) == lunarPhase) {
+                    console.log(Number(lunar))
                     const star = document.createElement('code')
                     star.textContent = emoji;
                     star.style.fontSize = size;
