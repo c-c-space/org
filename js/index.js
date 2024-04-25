@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 let lunar = emojiJSON[i].lunarPhase;
 
                 const main = document.querySelector('main')
-                if (lunar == Number(month).toFixed(0)) {
+                let month = document.querySelector('#phase h1 time').textContent;
+                let lunarPhase = Number(month).toFixed(0)
+                if (lunar == lunarPhase) {
                     const star = document.createElement('code')
                     star.textContent = emoji;
                     star.style.fontSize = size;
