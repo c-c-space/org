@@ -24,9 +24,9 @@ window.addEventListener('DOMContentLoaded', function () {
         c[i].width = size;
         c[i].height = size;
         ctx[i] = c[i].getContext('2d')
-        ctx[i].fillStyle = i === 0 ? '#222' : '#eee';
+        ctx[i].fillStyle = i === 0 ? "#222" : '#eee';
         ctx[i].arc(halfSize, halfSize, halfSize * .95, start[i], end[i])
-        ctx[i].fill();
+        ctx[i].fill()
     }
 
     const inputDate = document.querySelector('#date')
@@ -61,7 +61,7 @@ function earthShine(sun, m) {
     c[2].style.left = `${halfSize - r}px`;
     ctx[2].clearRect(0, 0, size, size);
     ctx[2].beginPath();
-    ctx[2].fillStyle = s > 0 ? '#222' : '#eee';
+    ctx[2].fillStyle = s > 0 ? "#222" : '#eee';
     ctx[2].arc(halfSize, halfSize, halfSize * .95, 0, pi2);
     ctx[2].fill();
 }

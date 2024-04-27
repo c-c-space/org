@@ -8,6 +8,18 @@ async function readmeMD(url, query) {
         }, false)
 }
 
+switch (document.readyState) {
+    case "loading":
+        // この文書はまだ読み込み中
+        if (!location.search) {
+            const head = document.querySelector('head')
+            const script = document.createElement("script")
+            script.src = "js/weather.js";
+            head.appendChild(script);
+        }
+        break;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem('yourInfo')) {
         document.querySelector('footer details').remove()

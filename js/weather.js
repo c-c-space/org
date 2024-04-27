@@ -1,8 +1,6 @@
 'use strict'
 
-window.addEventListener('load', () => {
-    geoFindMe()
-})
+geoFindMe()
 
 // 現在位置の地理座標・位置情報を取得
 function geoFindMe() {
@@ -57,10 +55,10 @@ function weatherAPI(lat, lon) {
 
     fetch(base)
         .then((response) => {
-            return response.json();
+            return response.json()
         })
         .then((data) => {
-            console.log(data);
+            console.log(data)
             icon0 = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
             weather0 = data.weather[0].description + ", " + data.weather[0].main;
             temp_current = Math.floor(data.main.temp - kelvin) + "°C";
@@ -73,7 +71,7 @@ function weatherAPI(lat, lon) {
             sunset = data.sys.sunset;
             locationName = data.name + ", " + data.sys.country;
 
-            const iconAll = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon-precomposed"]');
+            const iconAll = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon-precomposed"]')
             iconAll.forEach(function (iconEach) {
                 iconEach.href = icon0;
             }, false)
@@ -92,7 +90,7 @@ function weatherAPI(lat, lon) {
             `;
 
             document.querySelector('#moon').style.opacity = `${100 - clouds}%`;
-            const cloudAll = document.querySelectorAll('canvas');
+            const cloudAll = document.querySelectorAll('canvas')
             cloudAll.forEach(function (cloud) {
                 cloud.style.filter = `blur(${clouds * 0.123}px)`;
             }, false)
