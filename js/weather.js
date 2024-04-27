@@ -79,15 +79,20 @@ function weatherAPI(lat, lon) {
             weather.innerHTML = `
             <img src="${icon0}" alt="${weather0}"><br>
             <u>${weather0} | ${locationName}</u><br>
-            日の出 Sunrise <i>
-            ${new Date(sunrise * 1000).toLocaleTimeString()}
-            </i><br>
-            日の入 Sunset <i>
-            ${new Date(sunset * 1000).toLocaleTimeString()}
-            </i>
+            日の出 Sunrise
+            <i id="sunrise">${new Date(sunrise * 1000).toLocaleTimeString()}</i>
+            <br>
+            日の入 Sunset
+            <i id="sunset">${new Date(sunset * 1000).toLocaleTimeString()}</i>
             <br>
             <small>気温 ${temp_current} | 最高気温 ${temp_max} | 最低気温 ${temp_min} | 雲量 ${clouds}%</small>
             `;
+
+            const submitForm = document.querySelector('footer details')
+            const nowTime = new Date().toLocaleTimeString()
+            if (new Date(sunrise * 1000).toLocaleTimeString() <= nowTime || nowTime <= new Date(sunset * 1000).toLocaleTimeString()) {
+                submitForm.hidden = false;
+            }
 
             document.querySelector('#moon').style.opacity = `${100 - clouds}%`;
             const cloudAll = document.querySelectorAll('canvas')

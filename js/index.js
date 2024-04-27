@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('footer aside').appendChild(enter)
         enter.addEventListener('click', () => {
             setLOG()
-        })
+        }, false)
     }
     readmeMD('README.md', '#readme')
-})
+}, false)
 
 
 let array = JSON.parse(localStorage.getItem("emoji")) || [];
