@@ -113,8 +113,9 @@ footer aside button.today {
     font-size: 150%;
 }
 
-#to input[type="radio"]+label,
-footer aside #calendar {
+#phase h2 i,
+footer aside #calendar,
+#to input[type="radio"]+label {
     font-size: 125%;
 }
 

@@ -7,9 +7,10 @@ footer {
     color: #fff;
 }
 
-#phase h1 u {
+#phase u {
     background: #fff;
     color: #111;
+    font-weight: 400;
 }
 
 main {
@@ -80,7 +81,7 @@ input[type="date"] {
     display: inline-block;
     text-decoration: none;
     padding: 0 0.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 #phase time {
