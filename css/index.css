@@ -16,7 +16,7 @@ main {
     display: grid;
     place-content: center;
     overflow: hidden;
-    height: 170vw;
+    height: 120vw;
     max-height: calc(100vh - 5rem);
 }
 
@@ -72,8 +72,8 @@ input[type="date"] {
 }
 
 #phase h2 {
-    -webkit-text-stroke: 0.025rem #111;
-    text-stroke: 0.025rem #111;
+    -webkit-text-stroke: 0.01rem #111;
+    text-stroke: 0.01rem #111;
 }
 
 #phase u {
