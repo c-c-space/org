@@ -89,8 +89,8 @@ function weatherAPI(lat, lon) {
             `;
 
             const submitForm = document.querySelector('footer details')
-            const nowTime = new Date().toLocaleTimeString()
-            if (new Date(sunrise * 1000).toLocaleTimeString() >= nowTime || new Date(sunset * 1000).toLocaleTimeString() <= nowTime) {
+            const hhmm = new Date().toLocaleTimeString()
+            if (new Date(sunrise * 1000).toLocaleTimeString() >= hhmm || new Date(sunset * 1000).toLocaleTimeString() <= hhmm) {
                 submitForm.hidden = false;
             }
 
