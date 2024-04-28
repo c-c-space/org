@@ -90,7 +90,7 @@ function weatherAPI(lat, lon) {
 
             const submitForm = document.querySelector('footer details')
             const nowTime = new Date().toLocaleTimeString()
-            if (new Date(sunrise * 1000).toLocaleTimeString() >= nowTime || nowTime <= new Date(sunset * 1000).toLocaleTimeString()) {
+            if (new Date(sunrise * 1000).toLocaleTimeString() <= nowTime || nowTime <= new Date(sunset * 1000).toLocaleTimeString()) {
                 submitForm.hidden = false;
             }
 
