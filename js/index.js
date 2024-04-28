@@ -14,7 +14,7 @@ switch (document.readyState) {
         if (!location.search) {
             const head = document.querySelector('head')
             const script = document.createElement("script")
-            script.src = "js/weather.js";
+            script.src = "js/weather.js?" + Date.now();
             head.appendChild(script);
         }
         break;
