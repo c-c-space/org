@@ -8,8 +8,8 @@
             "hidden": true
         },
         {
-            "date": "🌚 月齢・月相 🌝",
-            "name": "🌛 Lunar Calendar 🌜",
+            "date": "29.530588853 + 0.000000002162 * Y",
+            "name": "太陰暦 Lunar Calendar",
             "url": "/org/29d12h44m3s/",
             "ver": "ver.1",
             "hidden": true
