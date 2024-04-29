@@ -87,20 +87,6 @@ function weatherAPI(lat, lon) {
             <small>気温 ${temp_current} | 最高気温 ${temp_max} | 最低気温 ${temp_min} | 雲量 ${clouds}%</small>
             `;
 
-            const nowH = new Date().getHours()
-            const nowM = new Date().getMinutes()
-            const sunriseH = new Date(sunrise * 1000).getHours()
-            const sunriseM = new Date(sunrise * 1000).getMinutes()
-            const sunsetH = new Date(sunset * 1000).getHours()
-            const sunsetM = new Date(sunset * 1000).getMinutes()
-            const submitForm = document.querySelector('footer details')
-            if (sunriseH >= nowH && sunriseM >= nowM) {
-                submitForm.hidden = false;
-            }
-            if (sunsetH <= nowH && sunsetM <= nowM) {
-                submitForm.hidden = false;
-            }
-
             document.querySelector('#moon').style.opacity = `${100 - clouds}%`;
             const cloudAll = document.querySelectorAll('canvas')
             cloudAll.forEach(function (cloud) {
