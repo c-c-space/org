@@ -58,7 +58,6 @@ function weatherAPI(lat, lon) {
             return response.json()
         })
         .then((data) => {
-            console.log(data)
             icon0 = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
             weather0 = data.weather[0].description + ", " + data.weather[0].main;
             temp_current = Math.floor(data.main.temp - kelvin) + "°C";
@@ -88,9 +87,17 @@ function weatherAPI(lat, lon) {
             <small>気温 ${temp_current} | 最高気温 ${temp_max} | 最低気温 ${temp_min} | 雲量 ${clouds}%</small>
             `;
 
+            const nowH = new Date().getHours()
+            const nowM = new Date().getMinutes()
+            const sunriseH = new Date(sunrise * 1000).getHours()
+            const sunriseM = new Date(sunrise * 1000).getMinutes()
+            const sunsetH = new Date(sunset * 1000).getHours()
+            const sunsetM = new Date(sunset * 1000).getMinutes()
             const submitForm = document.querySelector('footer details')
-            const hhmm = new Date().toLocaleTimeString()
-            if (new Date(sunrise * 1000).toLocaleTimeString() >= hhmm || new Date(sunset * 1000).toLocaleTimeString() <= hhmm) {
+            if (sunriseH >= nowH && sunriseM >= nowM) {
+                submitForm.hidden = false;
+            }
+            if (sunsetH <= nowH && sunsetM <= nowM) {
                 submitForm.hidden = false;
             }
 
