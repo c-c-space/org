@@ -33,6 +33,7 @@ function skyGradient(color, cloudy, sunny) {
         hsl(222 ${111 - cloudy}% ${sunny}%),
         hsl(${color} ${111 - cloudy}% ${sunny}%)
     )`;
+    document.body.style.background = `hsl(${color} ${111 - cloudy}% ${sunny}%)`
 }
 
 function weatherAPI(lat, lon) {
