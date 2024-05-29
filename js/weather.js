@@ -70,9 +70,8 @@ function weatherAPI(lat, lon) {
             sunset = data.sys.sunset;
             locationName = data.name + ", " + data.sys.country;
 
-            let now = Math.floor(new Date().getTime() / 1000)
-            console.log(now)
-            let sky,
+            let now = Math.floor(new Date().getTime() / 1000),
+                sky,
                 sun;
 
             if (sunrise - 2400 <= now && now <= sunrise + 1111) {
@@ -83,8 +82,8 @@ function weatherAPI(lat, lon) {
                     sky = 222;
                     sun = 65;
                 }
-                document.querySelector('footer details').remove()
                 readmeMD('README.md', '#readme')
+                document.querySelector('footer details').remove()
                 console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
             } else if (sunset - 1111 <= now && now <= sunset + 2400) {
                 if (sunset + 1111 <= now) {
@@ -99,8 +98,8 @@ function weatherAPI(lat, lon) {
             } else if (sunrise <= now && now <= sunset) {
                 sky = 222;
                 sun = 75;
-                document.querySelector('footer details').remove()
                 readmeMD('README.md', '#readme')
+                document.querySelector('footer details').remove()
             } else {
                 sky = 225;
                 sun = 5;
@@ -109,11 +108,11 @@ function weatherAPI(lat, lon) {
 
             document.body.style.background = `hsl(${sky} ${100 - clouds}% ${sun}%)`;
 
-            document.querySelector('#moon').style.opacity = `${100 - clouds / 1.075}%`;
             const cloudAll = document.querySelectorAll('canvas')
             cloudAll.forEach(function (cloud) {
                 cloud.style.filter = `blur(${clouds * 0.111}px)`;
             }, false)
+            document.querySelector('#moon').style.opacity = `${100 - clouds / 1.075}%`;
 
             const iconAll = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon-precomposed"]')
             iconAll.forEach(function (iconEach) {
