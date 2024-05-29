@@ -78,41 +78,43 @@ function weatherAPI(lat, lon) {
             sunset = data.sys.sunset;
             locationName = data.name + ", " + data.sys.country;
 
-            const today = Math.floor(new Date().getTime() / 1000)
+            let now = Math.floor(new Date().getTime() / 1000)
+            console.log(now)
             let sky,
                 sun;
 
-            if (sunrise - 2400 <= today && today <= sunrise + 1111) {
-                if (today <= sunrise - 1111) {
-                    sky = 250;
+            if (sunrise - 2400 <= now && now <= sunrise + 1111) {
+                if (now <= sunrise - 1111) {
+                    sky = 255;
                     sun = 25;
                 } else {
-                    sky = 225;
-                    sun = 55;
+                    sky = 222;
+                    sun = 65;
                 }
                 document.querySelector('footer details').remove()
                 readmeMD('README.md', '#readme')
                 console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
-            } else if (sunset - 1111 <= today && today <= sunset + 2400) {
-                if (sunset + 1111 <= today) {
-                    sky = 250;
-                    sun = 20;
+            } else if (sunset - 1111 <= now && now <= sunset + 2400) {
+                if (sunset + 1111 <= now) {
+                    sky = 255;
+                    sun = 25;
                 } else {
-                    sky = 5;
-                    sun = 50;
+                    sky = 15;
+                    sun = 55;
                 }
                 document.querySelector('#readme').remove()
                 console.log("日の入 " + Number(sunset - 1111) + " to " + Number(sunset + 2400))
-            } else if (sunrise <= today && today <= sunset) {
-                sky = 200;
-                sun = 85;
+            } else if (sunrise <= now && now <= sunset) {
+                sky = 222;
+                sun = 75;
                 document.querySelector('footer details').remove()
                 readmeMD('README.md', '#readme')
             } else {
-                sky = 200;
+                sky = 225;
                 sun = 5;
                 document.querySelector('#readme').remove()
             }
+
             document.body.style.background = `hsl(${sky} ${100 - clouds}% ${sun}%)`;
 
             document.querySelector('#moon').style.opacity = `${100 - clouds / 1.075}%`;
