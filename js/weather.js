@@ -88,22 +88,25 @@ function weatherAPI(lat, lon) {
                 if (now <= sunrise - 1111) {
                     sky = 50;
                     sun = 15;
+                    document.querySelector('#readme').remove()
                 } else {
                     sky = 195;
                     sun = 65;
+                    readmeMD('README.md', '#readme')
+                    document.querySelector('footer details').remove()
                 }
-                readmeMD('README.md', '#readme')
-                document.querySelector('footer details').remove()
                 console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
             } else if (sunset - 1111 <= now && now <= sunset + 2400) {
                 if (sunset + 1111 <= now) {
                     sky = 5;
                     sun = 25;
+                    document.querySelector('#readme').remove()
                 } else {
                     sky = 15;
                     sun = 50;
+                    readmeMD('README.md', '#readme')
+                    document.querySelector('footer details').remove()
                 }
-                document.querySelector('#readme').remove()
                 console.log("日の入 " + Number(sunset - 1111) + " to " + Number(sunset + 2400))
             } else if (sunrise <= now && now <= sunset) {
                 sky = 222;
@@ -112,7 +115,7 @@ function weatherAPI(lat, lon) {
                 document.querySelector('footer details').remove()
             } else {
                 sky = 222;
-                sun = 5;
+                sun = 4;
                 document.querySelector('#readme').remove()
             }
 
