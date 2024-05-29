@@ -2,14 +2,6 @@
 
 geoFindMe()
 
-async function readmeMD(url, query) {
-    fetch(url)
-        .then(response => response.text())
-        .then(innerText => {
-            document.querySelector(query).innerText = innerText;
-        }, false)
-}
-
 // 現在位置の地理座標・位置情報を取得
 function geoFindMe() {
     const weather = document.querySelector('#earth');

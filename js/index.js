@@ -11,6 +11,14 @@ switch (document.readyState) {
         break;
 }
 
+async function readmeMD(url, query) {
+    fetch(url)
+        .then(response => response.text())
+        .then(innerText => {
+            document.querySelector(query).innerText = innerText;
+        }, false)
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem('yourInfo')) {
         document.querySelector('footer details').remove()
@@ -108,8 +116,8 @@ window.addEventListener("load", () => {
                         }, false)
                     }
                 }
-                document.querySelector('#readme').remove()
             }
+            readmeMD('README.md', '#readme')
         } else {
             submitStars(`29d12h44m3s/${lunarPhase}.csv`)
 
