@@ -27,6 +27,14 @@ function geoFindMe() {
     }
 }
 
+function skyGradient(color, cloudy, sunny) {
+    document.querySelector('main').style.background = `
+    linear-gradient(180deg,
+        hsl(222 ${111 - cloudy}% ${sunny}%),
+        hsl(${color} ${111 - cloudy}% ${sunny}%)
+    )`;
+}
+
 function weatherAPI(lat, lon) {
     const weather = document.querySelector('#earth');
     weather.textContent = "";
@@ -70,16 +78,17 @@ function weatherAPI(lat, lon) {
             sunset = data.sys.sunset;
             locationName = data.name + ", " + data.sys.country;
 
+            // new Date('YYYY-MM-DDTHH:MM')
             let now = Math.floor(new Date().getTime() / 1000),
                 sky,
                 sun;
 
             if (sunrise - 2400 <= now && now <= sunrise + 1111) {
                 if (now <= sunrise - 1111) {
-                    sky = 255;
-                    sun = 25;
+                    sky = 50;
+                    sun = 15;
                 } else {
-                    sky = 222;
+                    sky = 195;
                     sun = 65;
                 }
                 readmeMD('README.md', '#readme')
@@ -87,26 +96,26 @@ function weatherAPI(lat, lon) {
                 console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
             } else if (sunset - 1111 <= now && now <= sunset + 2400) {
                 if (sunset + 1111 <= now) {
-                    sky = 255;
+                    sky = 5;
                     sun = 25;
                 } else {
                     sky = 15;
-                    sun = 55;
+                    sun = 50;
                 }
                 document.querySelector('#readme').remove()
                 console.log("日の入 " + Number(sunset - 1111) + " to " + Number(sunset + 2400))
             } else if (sunrise <= now && now <= sunset) {
                 sky = 222;
-                sun = 75;
+                sun = 65;
                 readmeMD('README.md', '#readme')
                 document.querySelector('footer details').remove()
             } else {
-                sky = 225;
+                sky = 222;
                 sun = 5;
                 document.querySelector('#readme').remove()
             }
 
-            document.body.style.background = `hsl(${sky} ${100 - clouds}% ${sun}%)`;
+            skyGradient(sky, clouds, sun)
 
             const cloudAll = document.querySelectorAll('canvas')
             cloudAll.forEach(function (cloud) {
