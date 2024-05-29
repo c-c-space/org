@@ -2,7 +2,6 @@
 
 switch (document.readyState) {
     case "loading":
-        // この文書はまだ読み込み中
         if (!location.search) {
             const head = document.querySelector('head')
             const script = document.createElement("script")
@@ -109,6 +108,7 @@ window.addEventListener("load", () => {
                         }, false)
                     }
                 }
+                document.querySelector('#readme').remove()
             }
         } else {
             submitStars(`29d12h44m3s/${lunarPhase}.csv`)
@@ -142,7 +142,7 @@ window.addEventListener("load", () => {
                     lunar: lunarPhase
                 }
 
-                // localStorage に sign を追加
+                // localStorage に emoji を追加
                 addData(emojiValue, fontSize, lunarPhase, new Date().toLocaleString())
 
                 const emojiJSON = JSON.stringify(thisEmoji)
