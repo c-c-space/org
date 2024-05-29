@@ -64,7 +64,7 @@ footer aside {
 }
 
 footer nav input[type="radio"]:checked+label {
-    background-color: #eee;
+    background-color: #fff;
     border-radius: 0.5rem;
     color: #111;
     text-shadow: 0.1rem 0.1rem #777;
@@ -88,7 +88,8 @@ footer {
 footer aside::before,
 footer aside button,
 footer nav::after,
-footer details summary::after {
+footer details summary::after,
+footer form button {
     font-family: "Saint", serif;
 }
 
@@ -131,7 +132,7 @@ summary {
 footer aside button {
     appearance: none;
     background: transparent;
-    color: #eee;
+    color: #fff;
     border: none;
     outline: none;
     font-size: 111%;
@@ -156,7 +157,7 @@ footer aside button:hover,
 #to input[type="radio"]+label:hover {
     cursor: pointer;
     color: #111;
-    background: #eee;
+    background: #fff;
 }
 
 footer details summary::after {
@@ -203,10 +204,9 @@ footer details summary::after {
 footer form button {
     cursor: pointer;
     color: #111;
-    background: #eee;
+    background: #fff;
     border: none;
     outline: none;
-    font-family: inherit;
     margin-top: 0.5rem;
     width: 100%;
 }

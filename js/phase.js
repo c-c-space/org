@@ -38,6 +38,7 @@ function lunarPhase(l, query) {
         phase = 'Morning Crescent';
         earth = '<small>月は太陽を向いた地球の右側から太陽と同じ方向へ公転</small><br>日の出前の東の空に新月へ欠けてゆく月が見える';
     }
+
     let thisPhase = emoji + ' ' + phase;
     document.querySelector(query).textContent = thisPhase;
     document.querySelector('#earth').innerHTML = earth;

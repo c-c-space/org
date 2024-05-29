@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', function () {
         c[i].width = size;
         c[i].height = size;
         ctx[i] = c[i].getContext('2d')
-        ctx[i].fillStyle = i === 0 ? "#222" : '#eee';
+        ctx[i].fillStyle = i === 0 ? "#111" : '#fff';
         ctx[i].arc(halfSize, halfSize, halfSize * .95, start[i], end[i])
         ctx[i].fill()
     }
@@ -40,12 +40,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
         const synodic = 29.530588853 +
             2.162e-9 * ((dd - 946727935816) / 315576e5)
+
         earthShine(dd, synodic)
         daysOld(dd)
 
-        if (localStorage.getItem('yourInfo')) {
-            document.querySelector('footer details').remove()
-        }
+        document.querySelector('footer details').remove()
     } else {
         getLunarAge(inputDate.value)
     }
@@ -61,7 +60,7 @@ function earthShine(sun, m) {
     c[2].style.left = `${halfSize - r}px`;
     ctx[2].clearRect(0, 0, size, size);
     ctx[2].beginPath();
-    ctx[2].fillStyle = s > 0 ? "#222" : '#eee';
+    ctx[2].fillStyle = s > 0 ? "#111" : '#fff';
     ctx[2].arc(halfSize, halfSize, halfSize * .95, 0, pi2);
     ctx[2].fill();
 }
@@ -81,7 +80,7 @@ function daysOld(today) {
 function getLunarAge(d) {
     const date = new Date(d)
     if (isNaN(date.getTime())) return;
-    date.setHours(0)
+    date.setHours(12)
 
     const month = date.getTime() / 864e5 - 6.475,
         synodic = 29.530588853 +

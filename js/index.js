@@ -1,13 +1,5 @@
 'use strict'
 
-async function readmeMD(url, query) {
-    fetch(url)
-        .then(response => response.text())
-        .then(innerText => {
-            document.querySelector(query).innerText = innerText;
-        }, false)
-}
-
 switch (document.readyState) {
     case "loading":
         // この文書はまだ読み込み中
@@ -41,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             setLOG()
         }, false)
     }
-    readmeMD('README.md', '#readme')
 }, false)
 
 
@@ -76,6 +67,20 @@ window.addEventListener("load", () => {
         }, false)
     }
 
+    const scrollElement = document.querySelector('#calendar');
+    scrollElement.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+        const maxScrollLeft = scrollElement.scrollWidth - scrollElement.clientWidth;
+        if (
+            (scrollElement.scrollLeft <= 0 && e.deltaY < 0) ||
+            (scrollElement.scrollLeft >= maxScrollLeft && e.deltaY > 0)
+        )
+            return;
+
+        e.preventDefault();
+        scrollElement.scrollLeft += e.deltaY;
+    })
+
     if (localStorage.getItem('yourInfo')) {
         if (location.search) {
             if (localStorage.getItem('emoji')) {
@@ -95,7 +100,7 @@ window.addEventListener("load", () => {
                         main.appendChild(star)
 
                         star.addEventListener('click', function () {
-                            let result = window.confirm('この絵文字をコレクションから削除します。 \r\n Remove This from Your Collection.')
+                            let result = window.confirm('この絵文字をコレクションから削除します。\r\nRemove This from Your Collection.')
                             if (result) {
                                 emojiJSON.splice(i, 1)
                                 localStorage.setItem('emoji', JSON.stringify(emojiJSON))

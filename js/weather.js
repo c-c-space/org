@@ -2,6 +2,14 @@
 
 geoFindMe()
 
+async function readmeMD(url, query) {
+    fetch(url)
+        .then(response => response.text())
+        .then(innerText => {
+            document.querySelector(query).innerText = innerText;
+        }, false)
+}
+
 // 現在位置の地理座標・位置情報を取得
 function geoFindMe() {
     const weather = document.querySelector('#earth');
@@ -70,6 +78,49 @@ function weatherAPI(lat, lon) {
             sunset = data.sys.sunset;
             locationName = data.name + ", " + data.sys.country;
 
+            const today = Math.floor(new Date().getTime() / 1000)
+            let sky,
+                sun;
+
+            if (sunrise - 2400 <= today && today <= sunrise + 1111) {
+                if (today <= sunrise - 1111) {
+                    sky = 250;
+                    sun = 25;
+                } else {
+                    sky = 225;
+                    sun = 55;
+                }
+                document.querySelector('footer details').remove()
+                readmeMD('README.md', '#readme')
+                console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
+            } else if (sunset - 1111 <= today && today <= sunset + 2400) {
+                if (sunset + 1111 <= today) {
+                    sky = 250;
+                    sun = 20;
+                } else {
+                    sky = 5;
+                    sun = 50;
+                }
+                document.querySelector('#readme').remove()
+                console.log("日の入 " + Number(sunset - 1111) + " to " + Number(sunset + 2400))
+            } else if (sunrise <= today && today <= sunset) {
+                sky = 200;
+                sun = 85;
+                document.querySelector('footer details').remove()
+                readmeMD('README.md', '#readme')
+            } else {
+                sky = 200;
+                sun = 5;
+                document.querySelector('#readme').remove()
+            }
+            document.body.style.background = `hsl(${sky} ${100 - clouds}% ${sun}%)`;
+
+            document.querySelector('#moon').style.opacity = `${100 - clouds / 1.075}%`;
+            const cloudAll = document.querySelectorAll('canvas')
+            cloudAll.forEach(function (cloud) {
+                cloud.style.filter = `blur(${clouds * 0.111}px)`;
+            }, false)
+
             const iconAll = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon-precomposed"]')
             iconAll.forEach(function (iconEach) {
                 iconEach.href = icon0;
@@ -84,13 +135,7 @@ function weatherAPI(lat, lon) {
             日の入 Sunset
             <i id="sunset">${new Date(sunset * 1000).toLocaleTimeString()}</i>
             <br>
-            <small>気温 ${temp_current} | 最高気温 ${temp_max} | 最低気温 ${temp_min} | 雲量 ${clouds}%</small>
+            <small>気温 ${temp_current} | 最高気温 ${temp_max} | 最低気温 ${temp_min} | 雲量 ${clouds}% | 風速 ${wind}m/s</small>
             `;
-
-            document.querySelector('#moon').style.opacity = `${100 - clouds}%`;
-            const cloudAll = document.querySelectorAll('canvas')
-            cloudAll.forEach(function (cloud) {
-                cloud.style.filter = `blur(${clouds * 0.123}px)`;
-            }, false)
         });
 }
