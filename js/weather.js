@@ -91,7 +91,7 @@ function weatherAPI(lat, lon) {
             if (sunrise - 2400 <= now && now <= sunrise + 1111) {
                 if (now <= sunrise - 1111) {
                     sky = 50;
-                    sun = 25;
+                    sun = 30;
                     document.querySelector('#readme').remove()
                 } else {
                     sky = 195;
@@ -102,11 +102,11 @@ function weatherAPI(lat, lon) {
                 console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
             } else if (sunset - 1111 <= now && now <= sunset + 2400) {
                 if (sunset + 1111 <= now) {
-                    sky = 5;
+                    sky = 355;
                     sun = 25;
                     document.querySelector('#readme').remove()
                 } else {
-                    sky = 15;
+                    sky = 340;
                     sun = 50;
                     readmeMD('README.md', '#readme')
                     document.querySelector('footer details').remove()

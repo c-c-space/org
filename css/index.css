@@ -42,7 +42,9 @@ canvas[id*='moon'] {
 }
 
 #phase h2,
-input[type="date"] {
+input[type="date"],
+input[type="number"],
+select {
     font-size: 111%;
 }
 
@@ -51,7 +53,9 @@ input[type="date"] {
 }
 
 #phase h1,
-input[type="date"] {
+input[type="date"],
+input[type="number"],
+select {
     font-family: inherit;
     font-weight: 400;
 }

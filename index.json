@@ -13,6 +13,13 @@
             "url": "/org/29d12h44m3s/",
             "ver": "ver.1",
             "hidden": true
+        },
+        {
+            "date": "hsl(${hue} ${100 - cloudy}% ${sunny}%)",
+            "name": "Sunny ☀ Cloudy ☁ Sky Generator",
+            "url": "/org/css/",
+            "ver": "ver.1",
+            "hidden": true
         }
     ]
 }
