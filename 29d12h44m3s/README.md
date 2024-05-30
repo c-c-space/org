@@ -56,4 +56,5 @@ let today = month > 0 ? month % synodic : (synodic + month % synodic) % synodic;
 [^4]:月齢（げつれい）とは、直前の朔の瞬間からの経過時間（日）
 [^5]:月相（げっそう）とは、月面のうち輝いて見える部分の様相
 
-[Moon Symbols](https://symbl.cc/en/collections/moon/)
+* * *
+[月(暦) Earth & Sun + Moon 曜日 | Are.na](https://www.are.na/cc-group/earth-sun-moon)
