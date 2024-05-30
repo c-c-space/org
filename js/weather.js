@@ -7,6 +7,8 @@ function geoFindMe() {
     const weather = document.querySelector('#earth');
     if (!navigator.geolocation) {
         weather.textContent = 'Geolocation API is not supported by your browser';
+        readmeMD('README.md', '#readme')
+        document.querySelector('footer details').remove()
     } else {
         weather.textContent = 'Locating…';
         navigator.geolocation.getCurrentPosition(success, error);
@@ -15,6 +17,8 @@ function geoFindMe() {
     // 現在地の取得に失敗した場合
     function error() {
         weather.textContent = 'Unable to retrieve your location';
+        readmeMD('README.md', '#readme')
+        document.querySelector('footer details').remove()
     }
 
     // 現在地の取得に成功した場合
@@ -30,10 +34,10 @@ function geoFindMe() {
 function skyGradient(color, cloudy, sunny) {
     document.querySelector('main').style.background = `
     linear-gradient(180deg,
-        hsl(222 ${111 - cloudy}% ${sunny}%),
-        hsl(${color} ${111 - cloudy}% ${sunny}%)
+        hsl(222 ${100 - cloudy}% ${sunny}%),
+        hsl(${color} ${100 - cloudy}% ${sunny}%)
     )`;
-    document.body.style.background = `hsl(${color} ${111 - cloudy}% ${sunny}%)`
+    document.body.style.background = `hsl(${color} ${100 - cloudy}% ${sunny}%)`
 }
 
 function weatherAPI(lat, lon) {
@@ -87,7 +91,7 @@ function weatherAPI(lat, lon) {
             if (sunrise - 2400 <= now && now <= sunrise + 1111) {
                 if (now <= sunrise - 1111) {
                     sky = 50;
-                    sun = 15;
+                    sun = 25;
                     document.querySelector('#readme').remove()
                 } else {
                     sky = 195;
@@ -110,12 +114,12 @@ function weatherAPI(lat, lon) {
                 console.log("日の入 " + Number(sunset - 1111) + " to " + Number(sunset + 2400))
             } else if (sunrise <= now && now <= sunset) {
                 sky = 222;
-                sun = 65;
+                sun = 75;
                 readmeMD('README.md', '#readme')
                 document.querySelector('footer details').remove()
             } else {
                 sky = 222;
-                sun = 4;
+                sun = 5;
                 document.querySelector('#readme').remove()
             }
 
