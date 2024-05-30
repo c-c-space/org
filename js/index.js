@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
             setLOG()
         }, false)
     }
+    
+    readmeMD('README.md', '#readme')
 }, false)
 
 
@@ -117,7 +119,6 @@ window.addEventListener("load", () => {
                     }
                 }
             }
-            readmeMD('README.md', '#readme')
         } else {
             submitStars(`29d12h44m3s/${lunarPhase}.csv`)
 

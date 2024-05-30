@@ -1,13 +1,10 @@
 'use strict'
 
-geoFindMe()
-
 // 現在位置の地理座標・位置情報を取得
 function geoFindMe() {
     const weather = document.querySelector('#earth');
     if (!navigator.geolocation) {
         weather.textContent = 'Geolocation API is not supported by your browser';
-        readmeMD('README.md', '#readme')
         document.querySelector('footer details').remove()
     } else {
         weather.textContent = 'Locating…';
@@ -17,7 +14,6 @@ function geoFindMe() {
     // 現在地の取得に失敗した場合
     function error() {
         weather.textContent = 'Unable to retrieve your location';
-        readmeMD('README.md', '#readme')
         document.querySelector('footer details').remove()
     }
 
@@ -29,15 +25,6 @@ function geoFindMe() {
 
         weatherAPI(latitude, longitude)
     }
-}
-
-function skyGradient(color, cloudy, sunny) {
-    document.querySelector('main').style.background = `
-    linear-gradient(180deg,
-        hsl(222 ${100 - cloudy}% ${sunny}%),
-        hsl(${color} ${100 - cloudy}% ${sunny}%)
-    )`;
-    document.body.style.background = `hsl(${color} ${100 - cloudy}% ${sunny}%)`
 }
 
 function weatherAPI(lat, lon) {
@@ -64,7 +51,9 @@ function weatherAPI(lat, lon) {
         timezoon,
         sunrise,
         sunset,
-        locationName;
+        locationName,
+        sky,
+        sun;
 
     fetch(base)
         .then((response) => {
@@ -83,20 +72,15 @@ function weatherAPI(lat, lon) {
             sunset = data.sys.sunset;
             locationName = data.name + ", " + data.sys.country;
 
-            // new Date('YYYY-MM-DDTHH:MM')
-            let now = Math.floor(new Date().getTime() / 1000),
-                sky,
-                sun;
-
             if (sunrise - 2400 <= now && now <= sunrise + 1111) {
                 if (now <= sunrise - 1111) {
                     sky = 50;
                     sun = 30;
+                    document.querySelector('footer details').hidden = false;
                     document.querySelector('#readme').remove()
                 } else {
                     sky = 195;
                     sun = 65;
-                    readmeMD('README.md', '#readme')
                     document.querySelector('footer details').remove()
                 }
                 console.log("日の出 " + Number(sunrise - 2400) + " to " + Number(sunrise + 1111))
@@ -104,22 +88,22 @@ function weatherAPI(lat, lon) {
                 if (sunset + 1111 <= now) {
                     sky = 355;
                     sun = 25;
+                    document.querySelector('footer details').hidden = false;
                     document.querySelector('#readme').remove()
                 } else {
                     sky = 340;
                     sun = 50;
-                    readmeMD('README.md', '#readme')
                     document.querySelector('footer details').remove()
                 }
                 console.log("日の入 " + Number(sunset - 1111) + " to " + Number(sunset + 2400))
             } else if (sunrise <= now && now <= sunset) {
                 sky = 222;
                 sun = 75;
-                readmeMD('README.md', '#readme')
                 document.querySelector('footer details').remove()
             } else {
                 sky = 222;
                 sun = 5;
+                document.querySelector('footer details').hidden = false;
                 document.querySelector('#readme').remove()
             }
 
@@ -148,4 +132,13 @@ function weatherAPI(lat, lon) {
             <small>気温 ${temp_current} | 最高気温 ${temp_max} | 最低気温 ${temp_min} | 雲量 ${clouds}% | 風速 ${wind}m/s</small>
             `;
         });
+}
+
+function skyGradient(color, cloudy, sunny) {
+    document.querySelector('main').style.background = `
+    linear-gradient(180deg,
+        hsl(222 ${100 - cloudy}% ${sunny}%),
+        hsl(${color} ${100 - cloudy}% ${sunny}%)
+    )`;
+    document.body.style.background = `hsl(${color} ${100 - cloudy}% ${sunny}%)`
 }

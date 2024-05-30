@@ -19,12 +19,49 @@
     <link rel="icon" href="https://creative-community.space/ver/icon/favicon.png">
     <link rel="icon" href="https://creative-community.space/ver/icon/android.png" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="https://creative-community.space/ver/icon/ios.png" sizes="180x180">
-
     <link rel="stylesheet" href="https://creative-community.space/ver/css/menu.css?v=1.1" />
+    <!--
     <script src="https://creative-community.space/ver/js/menu.js?v=1.1"></script>
     <script src="https://creative-community.space/ver/js/login.js?v=1"></script>
+-->
     <script type="text/javascript">
-        menuJSON('index.json')
+        // menuJSON('index.json')
+
+        // new Date('YYYY-MM-DDTHH:MM')
+        let newDate = new Date(),
+            now = Math.floor(newDate.getTime() / 1000),
+            yestarday = newDate.setDate(newDate.getDate() - 1),
+            yyyy = new Date(yestarday).getFullYear(),
+            mm = new Date(yestarday).getMonth(),
+            dd = new Date(yestarday).getDate(),
+            thisMoon;
+
+        window.addEventListener("load", () => {
+            if (!location.search) {
+                const inputDate = document.querySelector('#date')
+                if (newDate.getHours() < 7) {
+                    thisMoon = `${yyyy}-${('0' + Number(mm + 1)).slice(-2)}-${('0' + dd).slice(-2)}`;
+                } else {
+                    thisMoon = new Date().toLocaleDateString('sv')
+                }
+
+                inputDate.value = thisMoon;
+                console.log(thisMoon)
+                getLunarAge(thisMoon)
+                geoFindMe()
+            } else {
+                // ?no=DD
+                const queryString = location.search;
+                const params = new URLSearchParams(queryString)
+                let dd = Number(params.get("no"))
+
+                const synodic = 29.530588853 +
+                    2.162e-9 * ((dd - 946727935816) / 315576e5)
+
+                earthShine(dd, synodic)
+                daysOld(dd)
+            }
+        })
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,9 +72,9 @@
     <link rel="stylesheet" href="css/style.css?v=1.2">
 
     <script src="js/phase.js?v=1.2"></script>
-    <script src="js/lunar.js?v=1.2"></script>
+    <script src="js/lunar.js?v=2.0"></script>
     <script src="js/stars.js?v=1"></script>
-    <script src="js/index.js?v=1.22"></script>
+    <script src="js/index.js?v=1.23"></script>
 </head>
 
 <body>
@@ -69,7 +106,7 @@
         <aside>
             <nav id="calendar"></nav>
         </aside>
-        <details>
+        <details open hidden>
             <summary>今日の感情（その強さ）を投稿する</summary>
             <form id="submit" action="#">
                 <nav id="emoji">

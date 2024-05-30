@@ -28,26 +28,6 @@ window.addEventListener('DOMContentLoaded', function () {
         ctx[i].arc(halfSize, halfSize, halfSize * .95, start[i], end[i])
         ctx[i].fill()
     }
-
-    const inputDate = document.querySelector('#date')
-    inputDate.value = new Date().toLocaleDateString('sv')
-
-    // ?no=DD
-    if (location.search) {
-        const queryString = location.search;
-        const params = new URLSearchParams(queryString)
-        let dd = Number(params.get("no"))
-
-        const synodic = 29.530588853 +
-            2.162e-9 * ((dd - 946727935816) / 315576e5)
-
-        earthShine(dd, synodic)
-        daysOld(dd)
-
-        document.querySelector('footer details').remove()
-    } else {
-        getLunarAge(inputDate.value)
-    }
 }, false)
 
 function earthShine(sun, m) {
