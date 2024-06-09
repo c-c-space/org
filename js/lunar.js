@@ -50,10 +50,12 @@ function daysOld(today) {
     const moonAge = document.querySelector('#phase h1 time')
     moonAge.className = 'days';
     moonAge.innerHTML = days;
-    moonAge.addEventListener('click', function () {
-        moonAge.className = moonAge.className === "days" ? "today" : "days";
-        moonAge.innerHTML = moonAge.textContent === days ? today.toFixed(12) : days;
-    }, false)
+    if (!location.search) {
+        moonAge.addEventListener('click', function () {
+            moonAge.className = moonAge.className === "days" ? "today" : "days";
+            moonAge.innerHTML = moonAge.textContent === days ? today.toFixed(12) : days;
+        }, false)
+    }
     lunarPhase(today, '#phase h1 u')
 }
 

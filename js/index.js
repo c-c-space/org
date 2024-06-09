@@ -61,7 +61,7 @@ window.addEventListener("load", () => {
     let month = document.querySelector('#phase h1 time').textContent;
     let lunarPhase = Number(month).toFixed(0)
 
-    for (let m = 1; m < 30; m++) {
+    for (let m = 1; m <= 30; m++) {
         const button = document.createElement('button')
         button.setAttribute('type', 'button')
         button.textContent = m;
