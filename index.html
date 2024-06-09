@@ -51,7 +51,7 @@
                 // ?no=DD
                 const queryString = location.search;
                 const params = new URLSearchParams(queryString)
-                let dd = Number(params.get("no") - 0.5)
+                let dd = Number(params.get("no") - 0.47)
                 const synodic = 29.530588853 +
                     2.162e-9 * ((dd - 946727935816) / 315576e5)
 
