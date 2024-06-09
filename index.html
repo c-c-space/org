@@ -35,7 +35,7 @@
             dd = new Date(yestarday).getDate(),
             thisMoon;
 
-        document.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("load", () => {
             if (!location.search) {
                 const inputDate = document.querySelector('#date')
                 if (newDate.getHours() < 12) {
