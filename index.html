@@ -35,7 +35,7 @@
             dd = new Date(yestarday).getDate(),
             thisMoon;
 
-        window.addEventListener("load", () => {
+        document.addEventListener("DOMContentLoaded", () => {
             if (!location.search) {
                 const inputDate = document.querySelector('#date')
                 if (newDate.getHours() < 12) {
@@ -51,8 +51,7 @@
                 // ?no=DD
                 const queryString = location.search;
                 const params = new URLSearchParams(queryString)
-                let dd = Number(params.get("no"))
-
+                let dd = Number(params.get("no") - 0.469411147)
                 const synodic = 29.530588853 +
                     2.162e-9 * ((dd - 946727935816) / 315576e5)
 
